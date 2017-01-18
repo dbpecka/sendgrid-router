@@ -10,8 +10,10 @@ app = Flask(__name__)
 
 @app.route('/_receive', methods=['POST'])
 def hello_world():
-    http = httplib2.Http(
-        httplib2.ProxyInfo(proxy_type=socks.PROXY_TYPE_HTTP, proxy_host='tasks.nginx', proxy_port=80))
+    socks.setdefaultproxy(socks.PROXY_TYPE_HTTP, 'tasks.nginx', 80)
+    socks.wrapmodule(httplib2)
+
+    http = httplib2.Http()
 
     events = json.loads(request.data.decode('utf-8'))
     for event in events:
