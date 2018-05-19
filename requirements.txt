@@ -1,4 +1,4 @@
 httplib2
 flask
-uwsgi
 pysocks
+gunicorn

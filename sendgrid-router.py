@@ -16,7 +16,7 @@ def hello_world():
         if 'source-callback' in event:
             callback_url = event['source-callback']
             subprocess.check_output([
-                'curl', '-X', 'POST', '--proxy', 'http://tasks.nginx:80', '-d', json.dumps(event), callback_url
+                'curl', '-X', 'POST', '--proxy', 'http://localhost:80', '-d', json.dumps(event), callback_url
             ])
 
     return 'Ack'
